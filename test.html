@@ -1104,7 +1104,11 @@
                         historyList.innerHTML = '';
                     });
                 }
-
+                if (clearBtn && historyList) {
+                    clearBtn.addEventListener('click', () => {
+                        historyList.innerHTML = '';
+                    });
+                }
 
                 const copyToClipboard = async (text) => {
 
