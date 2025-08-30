@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Service Directory - Bangladesh</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@400;600;700&family=Inter:wght@400;600;700;900&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .top-navigation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            box-shadow: 0px 1px 50px 0px rgba(181, 181, 181, 0.25);
+            z-index: 1000;
+        }
+
+
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .bangladesh-logo {
+            width: 70px;
+            height: 70px;
+
+            flex-shrink: 0;
+        }
+
+        #bangladesh-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .service-text {
+            font-family: 'Hind Madurai', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: #006747;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .score-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .score-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            background-color: rgba(65, 255, 107, 0.1);
+            height: 52px;
+        }
+
+        .score-badge.danger {
+            width: 123px;
+            justify-content: center;
+        }
+
+        .score {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            color: black;
+        }
+
+        .score-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .copy-button {
+            background: #00a63e;
+            color: white;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            height: 52px;
+            transition: background-color 0.2s ease;
+        }
+
+        .copy-button:hover {
+            background: #008c33;
+        }
+
+
+        .hero-section {
+            background: linear-gradient(to right, #013223 0%, #006747 50%, #013223 100%);
+            padding: 10px 60px 60px;
+            text-align: center;
+            color: white;
+            margin-top: 1px;
+            position: relative;
+
+        }
+
+        .hero-logo {
+            margin: 0 auto 11px;
+            width: 120px;
+            height: 120px;
+        }
+
+        .hero-logo img,
+        .hero-logo svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: 'Hind Madurai', sans-serif;
+            font-weight: 700;
+            font-size: 40px;
+            line-height: normal;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Hind Madurai', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: normal;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+
+        .main-content {
+            padding: 60px 58px;
+        }
+
+        .content-grid {
+            display: flex;
+            gap: 30px;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.15);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .service-icon {
+
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-bg {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+        }
+
+        .emergency-bg,
+        .women-child-bg,
+        .anti-corruption-bg,
+        .electricity-bg,
+        .brac-bg,
+        .railway-bg {
+            background-color: #ffe3e2;
+        }
+
+        .police-bg {
+            background-color: #dfefff;
+        }
+
+        .fire-bg,
+        .ambulance-bg {
+            background-color: #ffe3e2;
+        }
+
+        .icon-image {
+            width: 32px;
+
+            height: 32px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .icon-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .heart-icon {
+            width: 24px;
+            height: 24px;
+            color: #5C5C5C;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .heart-icon:hover {
+            color: #ED1C24;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .service-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .service-title {
+            font-family: 'Hind Madurai', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            color: #111111;
+        }
+
+        .service-category {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: #5c5c5c;
+            line-height: normal;
+        }
+
+        .service-number {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .number {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: #111111;
+            line-height: normal;
+        }
+
+        .category-tag {
+            background-color: #f2f2f2;
+            color: #5c5c5c;
+            font-family: 'Hind Madurai', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            display: inline-block;
+            width: fit-content;
+            line-height: normal;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            flex: 1;
+            height: 40px;
+            border-radius: 8px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn {
+            background: white;
+            color: #5c5c5c;
+            border: 1px solid #d4d6d5;
+        }
+
+        .copy-btn:hover {
+            background: #f8f9fa;
+            border-color: #a6a9a8;
+        }
+
+        .call-btn {
+            background: #00a63e;
+            color: white;
+        }
+
+        .call-btn:hover {
+            background: #008c33;
+        }
+
+        .btn-icon {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+
+        .copy-icon::before {
+            content: "📋";
+            font-size: 14px;
+        }
+
+        .call-icon::before {
+            content: "📞";
+            font-size: 14px;
+        }
+
+        .call-history-sidebar {
+            width: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.15);
+            padding: 24px;
+            height: fit-content;
+            flex-shrink: 0;
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .history-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            color: #111111;
+            line-height: 28px;
+        }
+
+        .clock-icon {
+            width: 24px;
+            height: 24px;
+            font-size: 18px;
+        }
+
+        .clear-button {
+            background: #00a63e;
+            color: white;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            height: 52px;
+            transition: background-color 0.2s ease;
+        }
+
+        .clear-button:hover {
+            background: #008c33;
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .history-item {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .history-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .history-content h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #111111;
+            line-height: normal;
+        }
+
+        .history-content p {
+            font-family: 'Hind Madurai', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: #5c5c5c;
+            line-height: normal;
+        }
+
+        .history-time {
+            font-family: 'Hind Madurai', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: #111111;
+            line-height: normal;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .content-grid {
+                flex-direction: column;
+            }
+
+            .call-history-sidebar {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-navigation {
+                padding: 0 20px;
+            }
+
+            .hero-section {
+                padding: 120px 20px 40px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .main-content {
+                padding: 40px 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 24px;
+            }
+
+            .nav-actions {
+                gap: 10px;
+            }
+
+            .score-container {
+                gap: 10px;
+            }
+
+            .score-badge {
+                padding: 8px 16px;
+                height: 44px;
+            }
+
+            .copy-button,
+            .clear-button {
+                padding: 8px 20px;
+                height: 44px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-navigation {
+                height: 80px;
+            }
+
+            .hero-section {
+                margin-top: 80px;
+                padding: 100px 20px 30px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .service-title {
+                font-size: 20px;
+                line-height: 28px;
+            }
+
+            .service-category {
+                font-size: 16px;
+            }
+
+            .number {
+                font-size: 28px;
+            }
+
+            .category-tag {
+                font-size: 16px;
+            }
+
+            .action-btn {
+                font-size: 14px;
+                height: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="top-navigation">
+        <div class="logo-container">
+            <div class="bangladesh-logo">
+                <img id="bangladesh-logo" src="assets/logo.png" alt="Bangladesh Logo">
+            </div>
+            <div class="service-text">
+                <div class="emergency-service-text"><b>Emergency<br>Service</b></div>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <div class="score-container">
+                <div class="score-badge danger">
+                    <span class="score">0</span>
+                    <div class="score-icon danger-icon">
+                        <img src="assets/heart.png" alt="Danger Icon">
+                    </div>
+                </div>
+                <div class="score-badge danger1">
+                    <span class="score">100</span>
+                    <div class="score-icon danger-icon">
+                        <img src="assets/coin.png" alt="Danger Icon">
+                    </div>
+                </div>
+                <button class="copy-button">0 Copy</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-logo">
+            <img src="assets/logo-dark.png" alt="Hero Logo">
+        </div>
+        <h1 class="hero-title">Emergency Service Directory</h1>
+        <p class="hero-subtitle">Government Emergency Services at Your Fingertip – A Project by Government of the
+            People's Republic of Bangladesh</p>
+    </section>
+
+    <main class="main-content">
+        <div class="content-grid">
+
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon emergency-icon">
+                            <div class="icon-bg emergency-bg"></div>
+                            <div class="icon-image">
+                                <img src="assets/emergency.png" alt="Emergency Icon">
+                            </div>
+                        </div>
+                        <div class="heart-icon">❤</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="service-info">
+                            <h3 class="service-title">National Emergency Number</h3>
+                            <p class="service-category">National Emergency</p>
+                        </div>
+                        <div class="service-number">
+                            <div class="number">999</div>
+                            <div class="category-tag">All</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn copy-btn">
+                                <span class="btn-icon copy-icon"></span>
+                                Copy
+                            </button>
+                            <button class="action-btn call-btn">
+                                <span class="btn-icon call-icon"></span>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon police-icon">
+                            <div class="icon-bg police-bg"></div>
+                            <div class="icon-image">
+                                <img src="assets/police.png" alt="Police Icon">
+                            </div>
+
+                        </div>
+                        <div class="heart-icon">❤</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="service-info">
+                            <h3 class="service-title">Police Helpline Number</h3>
+                            <p class="service-category">Police</p>
+                        </div>
+                        <div class="service-number">
+                            <div class="number">999</div>
+                            <div class="category-tag">Police</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn copy-btn">
+                                <span class="btn-icon copy-icon"></span>
+                                Copy
+                            </button>
+                            <button class="action-btn call-btn">
+                                <span class="btn-icon call-icon"></span>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon fire-icon">
+                            <div class="icon-bg fire-bg"></div>
+                            <div class="icon-image">
+                                <img src="assets/fire-service.png" alt="Fire Icon">
+                            </div>
+                        </div>
+                        <div class="heart-icon">❤</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="service-info">
+                            <h3 class="service-title">Fire Service Number</h3>
+                            <p class="service-category">Fire Service</p>
+                        </div>
+                        <div class="service-number">
+                            <div class="number">999</div>
+                            <div class="category-tag">Fire</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn copy-btn">
+                                <span class="btn-icon copy-icon"></span>
+                                Copy
+                            </button>
+                            <button class="action-btn call-btn">
+                                <span class="btn-icon call-icon"></span>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon ambulance-icon">
+                            <div class="icon-bg ambulance-bg"></div>
+                            <div class="icon-image">
+                                <img src="assets/ambulance.png" alt="Ambulance Icon">
+                            </div>
+                        </div>
+                        <div class="heart-icon">❤</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="service-info">
+                            <h3 class="service-title">Ambulance Service</h3>
+                            <p class="service-category">Ambulance</p>
+                        </div>
+                        <div class="service-number">
+                            <div class="number">1994-999999</div>
+                            <div class="category-tag">Health</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn copy-btn">
+                                <span class="btn-icon copy-icon"></span>
+                                Copy
+                            </button>
+                            <button class="action-btn call-btn">
+                                <span class="btn-icon call-icon"></span>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon women-child-icon">
+                            <div class="icon-bg women-child-bg"></div>
+                            <div class="icon-image">
+                                <img src="assets/emergency.png">
+                            </div>
+                        </div>
+                        <div class="heart-icon">❤</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="service-info">
+                            <h3 class="service-title">Women & Child Helpline</h3>
+                            <p class="service-category">Women & Child Helpline</p>
+                        </div>
+                        <div class="service-number">
+                            <div class="number">109</div>
+                            <div class="category-tag">Help</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn copy-btn">
+                                <span class="btn-icon copy-icon"></span>
+                                Copy
+                            </button>
+                            <button class="action-btn call-btn">
+                                <span class="btn-icon call-icon"></span>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon anti-corruption-icon">
+                            <div class="icon-bg anti-corruption-bg"></div>
+                            <div class="icon-image">
+                                <img src="assets/emergency.png">
+                            </div>
+                        </div>
+                        <div class="heart-icon">❤</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="service-info">
+                            <h3 class="service-title">Anti-Corruption Helpline</h3>
+                            <p class="service-category">Anti-Corruption</p>
+                        </div>
+                        <div class="service-number">
+                            <div class="number">106</div>
+                            <div class="category-tag">Govt.</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn copy-btn">
+                                <span class="btn-icon copy-icon"></span>
+                                Copy
+                            </button>
+                            <button class="action-btn call-btn">
+                                <span class="btn-icon call-icon"></span>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon electricity-icon">
+                            <div class="icon-bg electricity-bg"></div>
+                            <div class="icon-image">
+                                <img src="assets/emergency.png">
+                            </div>
+                        </div>
+                        <div class="heart-icon">❤</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="service-info">
+                            <h3 class="service-title">Electricity Helpline</h3>
+                            <p class="service-category">Electricity Outage</p>
+                        </div>
+                        <div class="service-number">
+                            <div class="number">16216</div>
+                            <div class="category-tag">Electricity</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn copy-btn">
+                                <span class="btn-icon copy-icon"></span>
+                                Copy
+                            </button>
+                            <button class="action-btn call-btn">
+                                <span class="btn-icon call-icon"></span>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon brac-icon">
+                            <div class="icon-bg brac-bg"></div>
+                            <div class="icon-image">
+                                <img src="assets/brac.png">
+                            </div>
+                        </div>
+                        <div class="heart-icon">❤</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="service-info">
+                            <h3 class="service-title">Brac Helpline</h3>
+                            <p class="service-category">Brac</p>
+                        </div>
+                        <div class="service-number">
+                            <div class="number">16445</div>
+                            <div class="category-tag">NGO</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn copy-btn">
+                                <span class="btn-icon copy-icon"></span>
+                                Copy
+                            </button>
+                            <button class="action-btn call-btn">
+                                <span class="btn-icon call-icon"></span>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon railway-icon">
+                            <div class="icon-bg railway-bg"></div>
+                            <div class="icon-image">
+                                <img src="assets/Bangladesh-Railway.png">
+                            </div>
+                        </div>
+                        <div class="heart-icon">❤</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="service-info">
+                            <h3 class="service-title">Bangladesh Railway Helpline</h3>
+                            <p class="service-category">Bangladesh Railway</p>
+                        </div>
+                        <div class="service-number">
+                            <div class="number">163</div>
+                            <div class="category-tag">Travel</div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn copy-btn">
+                                <span class="btn-icon copy-icon"></span>
+                                Copy
+                            </button>
+                            <button class="action-btn call-btn">
+                                <span class="btn-icon call-icon"></span>
+                                Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="call-history-sidebar">
+                <div class="history-header">
+                    <div class="history-title">
+                        <span class="clock-icon">🕐</span>
+                        Call History
+                    </div>
+                    <button class="clear-button">Clear</button>
+                </div>
+                <div class="history-list">
+                    <div class="history-item">
+                        <div class="history-content">
+                            <h4>Fire Service Number</h4>
+                            <p>999</p>
+                        </div>
+                        <div class="history-time">11:36:58 AM</div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-content">
+                            <h4>National Emergency Number</h4>
+                            <p>1994-999999</p>
+                        </div>
+                        <div class="history-time">11:36:58 AM</div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-content">
+                            <h4>Fire Service Number</h4>
+                            <p>999</p>
+                        </div>
+                        <div class="history-time">11:36:58 AM</div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-content">
+                            <h4>Bangladesh Railway Helpline</h4>
+                            <p>999</p>
+                        </div>
+                        <div class="history-time">11:36:58 AM</div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-content">
+                            <h4>Fire Service Number</h4>
+                            <p>999</p>
+                        </div>
+                        <div class="history-time">11:36:58 AM</div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-content">
+                            <h4>Anti-Corruption Helpline</h4>
+                            <p>999</p>
+                        </div>
+                        <div class="history-time">11:36:58 AM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>(() => {
+            'use strict';
+
+            const $ = (sel, root = document) => root.querySelector(sel);
+            const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+            document.addEventListener('DOMContentLoaded', () => {
+
+                const heartsEl = $('.score-badge.danger .score');
+                const coinsEl = $('.score-badge.danger1 .score');
+                const copyCounterBtn = $('.score-container .copy-button');
+
+                const historyList = $('.call-history-sidebar .history-list');
+                const clearBtn = $('.call-history-sidebar .clear-button');
+
+                if (historyList) historyList.innerHTML = '';
+
+                const parseIntSafe = (txt) => {
+                    const m = String(txt).match(/-?\d+/);
+                    return m ? parseInt(m[0], 10) : 0;
+                };
+
+                const getHearts = () => parseIntSafe(heartsEl?.textContent);
+                const setHearts = (n) => { if (heartsEl) heartsEl.textContent = String(n); };
+
+                const getCoins = () => parseIntSafe(coinsEl?.textContent);
+                const setCoins = (n) => { if (coinsEl) coinsEl.textContent = String(n); };
+
+
+                let copyLabelSuffix = 'Copy';
+                if (copyCounterBtn) {
+                    const txt = copyCounterBtn.textContent.trim();
+                    const after = txt.replace(/^\s*-?\d+\s*/, '');
+                    copyLabelSuffix = after.length ? after : 'Copy';
+                }
+                const getCopyCount = () => parseIntSafe(copyCounterBtn?.textContent);
+                const setCopyCount = (n) => { if (copyCounterBtn) copyCounterBtn.textContent = `${n} ${copyLabelSuffix}`; };
+
+                $$('.service-card .heart-icon').forEach(icon => {
+                    icon.addEventListener('click', () => {
+                        setHearts(getHearts() + 1);
+                    }, { passive: true });
+                });
+
+                const CALL_COST = 20;
+
+                $$('.service-card .call-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const card = btn.closest('.service-card');
+                        if (!card) return;
+
+                        const name = $('.service-title', card)?.textContent?.trim() || 'Unknown Service';
+                        const number = $('.service-number .number', card)?.textContent?.trim() || 'N/A';
+
+                        const coins = getCoins();
+                        if (coins < CALL_COST) {
+                            window.alert('Not enough coins to make a call. You need at least 20 coins.');
+                            return;
+                        }
+
+
+                        window.alert(`📞 Calling ${name}  ${number}...`);
+
+
+                        setCoins(coins - CALL_COST);
+
+                        if (historyList) {
+                            const item = document.createElement('div');
+                            item.className = 'history-item';
+
+                            const content = document.createElement('div');
+                            content.className = 'history-content';
+
+                            const title = document.createElement('h4');
+                            title.textContent = name;
+
+                            const num = document.createElement('p');
+                            num.textContent = number;
+
+                            content.appendChild(title);
+                            content.appendChild(num);
+
+                            const timeDiv = document.createElement('div');
+                            timeDiv.className = 'history-time';
+                            timeDiv.textContent = new Date().toLocaleTimeString();
+
+                            item.appendChild(content);
+                            item.appendChild(timeDiv);
+
+                            historyList.prepend(item);
+                        }
+                    });
+                });
+
+
+                if (clearBtn && historyList) {
+                    clearBtn.addEventListener('click', () => {
+                        historyList.innerHTML = '';
+                    });
+                }
+
+
+                const copyToClipboard = async (text) => {
+
+                    try {
+                        if (navigator.clipboard?.writeText) {
+                            await navigator.clipboard.writeText(text);
+                            return true;
+                        }
+                    } catch (_) { }
+
+                    try {
+                        const ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.setAttribute('readonly', '');
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        ta.style.left = '-9999px';
+                        document.body.appendChild(ta);
+                        ta.focus();
+                        ta.select();
+                        const ok = document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        return ok;
+                    } catch (_) {
+                        return false;
+                    }
+                };
+
+                $$('.service-card .copy-btn').forEach(btn => {
+                    btn.addEventListener('click', async () => {
+                        const card = btn.closest('.service-card');
+                        if (!card) return;
+
+                        const name = $('.service-title', card)?.textContent?.trim() || 'Unknown Service';
+                        const number = $('.service-number .number', card)?.textContent?.trim() || '';
+
+                        if (!number) {
+                            window.alert('No number found to copy.');
+                            return;
+                        }
+
+                        const success = await copyToClipboard(number);
+
+                        if (success) {
+
+                            window.alert(`Copied ${name} number: ${number}`);
+                            setCopyCount(getCopyCount() + 1);
+                        } else {
+
+                            window.alert(`Unable to copy automatically.\nNumber for ${name}: ${number}\nPlease copy it manually.`);
+                        }
+                    });
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
